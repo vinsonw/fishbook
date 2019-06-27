@@ -1,4 +1,8 @@
 # coding: utf-8
+import json
+
+from yushu_book import YuShuBook
+
 __author__ = 'Vinson'
 
 from flask import Flask, make_response
@@ -19,6 +23,12 @@ def search(q, page):
     """
 
     isbn_or_key = is_isbn_or_key(q)
+
+    if isbn_or_key == 'isbn':
+        result =  YuShuBook.search_by_isbn(q)
+    else:
+        result = YuShuBook.search_by_keyword(q)
+    return json.dumps(result),200,{'content-type':'application/json'} #指定返回结果为json否则默认按照html解析
 
 
 
