@@ -2,9 +2,11 @@
 # 2019/6/28 18:51
 from flask import jsonify
 
+
+from fisher import app
+
 from helper import is_isbn_or_key
 from yushu_book import YuShuBook
-from fisher import app
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
