@@ -1,16 +1,16 @@
 # coding: utf-8
 # 2019/6/28 18:51
-from flask import jsonify
-
-
-from fisher import app
+from flask import jsonify, Blueprint
 
 from helper import is_isbn_or_key
 from yushu_book import YuShuBook
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
-@app.route('/book/search/<q>/<page>')
+web = Blueprint('web', __name__)
+
+
+@web.route('/book/search/<q>/<page>')
 def search(q, page):
     """
         q 代表普通关键字或者isbn
