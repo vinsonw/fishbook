@@ -2,6 +2,7 @@
 # 2019/6/29 21:31
 from flask import Flask
 
+
 __author__ = 'Vinson <me@vinsonwei.com>'
 
 def create_app():
@@ -11,5 +12,5 @@ def create_app():
     return app
 
 def register_blueprint(app):
-    from app.web.book import web
-    app.register_blueprint(web)
+    from app.web import web
+    app.register_blueprint(web) #这里的register_blueprint()是app对象的方法

@@ -1,13 +1,13 @@
 # coding: utf-8
 # 2019/6/28 18:51
-from flask import jsonify, Blueprint
+from flask import jsonify
 
 from helper import is_isbn_or_key
 from yushu_book import YuShuBook
+from . import web
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
-web = Blueprint('web', __name__)
 
 
 @web.route('/book/search/<q>/<page>')
