@@ -4,7 +4,7 @@ from flask import jsonify
 
 from helper import is_isbn_or_key
 from yushu_book import YuShuBook
-from fishbook import app
+from fisher import app
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
