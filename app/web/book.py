@@ -26,9 +26,9 @@ def search():
     q = request.args['q']
     page = request.args['page']
 
-    a = request.args.to_dict() # 只有Pycharm Professional版本才有request对象的方法成员提示
+    # 验证q
 
-    # a = request.
+
 
 
     isbn_or_key = is_isbn_or_key(q)
