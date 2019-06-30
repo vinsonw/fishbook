@@ -2,12 +2,12 @@
 # 2019/6/28 18:51
 from flask import jsonify, request
 
+from app.forms.book import SearchForm
 from helper import is_isbn_or_key
 from yushu_book import YuShuBook
 from . import web
 
 __author__ = 'Vinson <me@vinsonwei.com>'
-
 
 
 @web.route('/book/search')
@@ -23,19 +23,22 @@ def search():
     # HTTP 的请求信息
     # 查询参数 POST参数 remote ip
 
-    q = request.args['q']
-    page = request.args['page']
+    # q和page都要满足一定条件才能处理
+    # q至少要有一个字符，有长度限制
+    # page为正整数，有最大值限制
 
-    # 验证q
+    # 验证层 的概念
+    form = SearchForm(request.args)
+    if form.validate():
+        q = form.q.data.strip()
+        page = form.page.data
 
+        isbn_or_key = is_isbn_or_key(q)
 
-
-
-    isbn_or_key = is_isbn_or_key(q)
-
-    if isbn_or_key == 'isbn':
-        result =  YuShuBook.search_by_isbn(q)
+        if isbn_or_key == 'isbn':
+            result =  YuShuBook.search_by_isbn(q)
+        else:
+            result = YuShuBook.search_by_keyword(q)
+        return jsonify(result)
     else:
-        result = YuShuBook.search_by_keyword(q)
-    return jsonify(result)
-    # return json.dumps(result),200,{'content-type':'application/json'} #指定返回结果为json否则默认按照html解析
+        return jsonify(form.errors)
