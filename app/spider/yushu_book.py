@@ -3,7 +3,7 @@
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
-from httper import HTTP
+from app.libs.httper import HTTP
 from flask import current_app #current_app是flask提供的机制
 
 class YuShuBook:
