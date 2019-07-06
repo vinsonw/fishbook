@@ -33,11 +33,33 @@ with app.app_context():
 
 
 
-class Foo:
+# class Foo:
+#     def __enter__(self):
+#         a = 1
+#         return a
+#     def __exit__(self, exc_type, exc_value, tb):
+#         b = 1
+# with Foo() as obj_Foo:
+#     pass
+
+class MyResource:
     def __enter__(self):
-        a = 1
-        return a
-    def __exit__(self, exc_type, exc_value, tb):
-        b = 1
-with Foo() as obj_Foo:
+        print('Connecting to resources.')
+        return self
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if exc_tb:
+            print('process exception now')
+        else:
+            print('no exception')
+        print('Closing resources connection')
+        return False # 如果返回True，则异常不在外抛
+    def query(self):
+        print('Querying')
+
+try:
+    with MyResource() as resource:
+        1/0
+        resource.query()
+except Exception as ex:
     pass
+

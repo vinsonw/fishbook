@@ -12,7 +12,14 @@ def create_app():
 
     register_blueprint(app)
     db.init_app(app)
+
+    # 第一种方式
     db.create_all(app=app)
+
+    # 第二种方式
+    # with app.app_context():
+    #     db.create_all()
+
 
     return app
 
