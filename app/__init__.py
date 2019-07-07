@@ -17,8 +17,8 @@ def create_app():
     db.create_all(app=app)
 
     # 第二种方式
-    # with app.app_context():
-    #     db.create_all()
+    with app.app_context():
+        db.create_all()
 
 
     return app

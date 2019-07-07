@@ -10,6 +10,10 @@ __author__ = 'Vinson <me@vinsonwei.com>'
 # 线程隔离对象Local
 
 # werkzeug local Local 实现线程
+# Local使用字典的方式实现的线程隔离
+# LocalStack封装了Local成为线程隔离的栈结构
+# 封装可以解决问题，如果一次封装解决不了，那么就再来一次
+# 编程也是一种艺术，适当的含蓄（封装）
 
 
 # Locak对象对线程隔离的实现
