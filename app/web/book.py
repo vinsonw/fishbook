@@ -10,6 +10,31 @@ from . import web
 __author__ = 'Vinson <me@vinsonwei.com>'
 
 
+@web.route('/test')
+def test1():
+    from flask import request
+    from app.libs.none_local import n
+    # print(n.v)
+    # n.v = 2
+    # print('----------')
+    #
+    # print(getattr(request, 'v', None))
+    # setattr(request, 'v', 2)
+    # print(request.v)
+
+    # app不是
+    from flask import current_app
+    app = current_app
+
+    print('current app id', id(app))
+
+    return ''
+
+
+
+
+
+
 @web.route('/book/search')
 def search():
     """
