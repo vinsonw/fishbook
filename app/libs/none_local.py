@@ -8,3 +8,5 @@ class NoneLocal:
         self.v = v
 
 n = NoneLocal(1)
+
+# 哎呀呀
