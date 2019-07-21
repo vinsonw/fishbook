@@ -10,3 +10,4 @@ class NoneLocal:
 n = NoneLocal(1)
 
 # 哎呀呀
+# second stupid test
