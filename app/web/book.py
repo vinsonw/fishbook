@@ -6,6 +6,7 @@ from app.forms.book import SearchForm
 from app.libs.helper import is_isbn_or_key
 from app.spider.yushu_book import YuShuBook
 from . import web
+from app.view_models.book import BookViewModel
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
@@ -38,8 +39,10 @@ def search():
 
         if isbn_or_key == 'isbn':
             result =  YuShuBook.search_by_isbn(q)
+            result = BookViewModel.package_single(result, q)
         else:
             result = YuShuBook.search_by_keyword(q)
-        return jsonify(result)
+            result = BookViewModel.package_collection(result, q)
+        return jsonify(result) # 重要：jsonify把Python中的字典转换为json格式
     else:
         return jsonify(form.errors)

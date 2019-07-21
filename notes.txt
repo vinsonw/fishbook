@@ -5,13 +5,16 @@
 状态码只是一个标识，不会对内容显示有影响
 
 测试urls:
-http://127.0.0.1:81/book/search?q=9787501524044&page=1
 http://t.yushu.im/v2/book/isbn/9787501524044
+http://127.0.0.1:81/book/search?q=9787501524044&page=1
 
+http://127.0.0.1:81/book/search?q=红楼梦
+http://127.0.0.1:81/book/search?q=9787070511209
 
 创建数据表的方式
 
 1. Database first: 手工在MySql中创建数据表
 2. Model first：用建模工具（如Navicat的Model功能）
 3. Code first: 程序员建议使用
+
 
