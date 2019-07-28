@@ -1,12 +1,14 @@
 # coding: utf-8
 # 2019/6/28 18:51
+import json
+
 from flask import jsonify, request
 
 from app.forms.book import SearchForm
 from app.libs.helper import is_isbn_or_key
 from app.spider.yushu_book import YuShuBook
 from . import web
-from app.view_models.book import BookViewModel
+from app.view_models.book import BookViewModel, BookCollection
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
@@ -31,18 +33,20 @@ def search():
 
     # 验证层 的概念
     form = SearchForm(request.args)
+    books = BookCollection()
     if form.validate():
         q = form.q.data.strip()
         page = form.page.data
-
         isbn_or_key = is_isbn_or_key(q)
+        yushu_book = YuShuBook()
 
         if isbn_or_key == 'isbn':
-            result =  YuShuBook.search_by_isbn(q)
-            result = BookViewModel.package_single(result, q)
+            yushu_book.search_by_isbn(q)
         else:
-            result = YuShuBook.search_by_keyword(q)
-            result = BookViewModel.package_collection(result, q)
-        return jsonify(result) # 重要：jsonify把Python中的字典转换为json格式
+            yushu_book.search_by_keyword(q, page)
+
+        books.fill(yushu_book, q)
+        return json.dumps(books, default=lambda o: o.__dict__)
+        # return jsonify(books) # 重要：jsonify把Python中的字典转换为json格式
     else:
         return jsonify(form.errors)
