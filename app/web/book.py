@@ -2,7 +2,7 @@
 # 2019/6/28 18:51
 import json
 
-from flask import jsonify, request
+from flask import jsonify, request, render_template
 
 from app.forms.book import SearchForm
 from app.libs.helper import is_isbn_or_key
@@ -50,3 +50,12 @@ def search():
         # return jsonify(books) # 重要：jsonify把Python中的字典转换为json格式
     else:
         return jsonify(form.errors)
+
+@web.route('/test')
+def test():
+    r = {
+        'name': 'Vinson',
+        'age': 18
+    }
+
+    return render_template('test.html', data=r)
