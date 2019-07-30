@@ -21,3 +21,7 @@ http://127.0.0.1:81/book/search?q=9787070511209
 测试url
 http://localhost:81/test
 # 0.0.0.0不工作
+
+http://localhost:81/book/search
+
+http://127.0.0.1:81/book/search?q=红楼梦

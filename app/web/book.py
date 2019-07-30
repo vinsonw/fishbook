@@ -2,7 +2,7 @@
 # 2019/6/28 18:51
 import json
 
-from flask import jsonify, request, render_template
+from flask import jsonify, request, render_template, flash
 
 from app.forms.book import SearchForm
 from app.libs.helper import is_isbn_or_key
@@ -46,16 +46,27 @@ def search():
             yushu_book.search_by_keyword(q, page)
 
         books.fill(yushu_book, q)
-        return json.dumps(books, default=lambda o: o.__dict__)
+        # return json.dumps(books, default=lambda o: o.__dict__)
         # return jsonify(books) # 重要：jsonify把Python中的字典转换为json格式
+
     else:
-        return jsonify(form.errors)
+        flash('关键字不符合要求，检查后重新输入')
+        # return jsonify(form.errors)
+
+    return render_template('search_result.html', books=books)
+
+@web.route('/book/<isbn>/detail')
+def book_detail(isbn):
+    pass
 
 @web.route('/test')
 def test():
     r = {
-        'name': 'Vinson',
+        'name': '',
         'age': 18
     }
 
-    return render_template('test2.html', data=r)
+    flash('hello, Vinson', category='error')
+    flash('hello, Vinson', category='warning')
+
+    return render_template('test.html', data=r)

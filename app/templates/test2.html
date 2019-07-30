@@ -5,16 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-    # for..in循环基本用法
-    {% for foo in [1,2,3] %}
-        {{ foo }}
-        <div>thisisdiv</div>
+    {% for key, value in data.items() %}
+        {{ key }}
+        {{ value }}
+{#        <div>111</div>#}
     {% endfor %}
-
-    {% for k,v in data.items() %}
-        {{ k }} : {{ v }} <br>
-
-    {% endfor %}
-
+    
 </body>
 </html>

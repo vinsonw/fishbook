@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    Hello, 这里是一个模板文件
-    {{ data.age }}
-
-    {% if data.age == 18 %}
-        {{ data['name'] }}
-    {% elif data.age < 18 %}
-        you're under age.
+{% extends 'layout.html' %}
+{% block content %}
+    {{ super() }}
+    {% if data.age < 18 %}
+        {{ data.name }}
+    {% elif data.age == 18 %}
+        {{ data.school | default(data.school) | default('未名')}}
+        {% with messages = get_flashed_messages() %}
+        {{ messages }}
+        {% endwith %}
     {% else %}
-         {{ data['name'] }}
+        {{ data.age }}
     {% endif %}
+     {{ messages }}
+{% endblock %}
 
-</body>
-</html>

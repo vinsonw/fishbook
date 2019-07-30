@@ -6,7 +6,7 @@ __author__ = 'Vinson <me@vinsonwei.com>'
 
 web = Blueprint('web', __name__)
 
-from app.web import book
+from app.web import book, auth, book, drift, gift, main, test, wish
 from app.web import user
 
 
