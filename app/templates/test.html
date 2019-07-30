@@ -5,9 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-Hello, 这里是一个模板文件
-{{ data.age }}
-{{ data['name'] }}
-{#jinja2#}
+    Hello, 这里是一个模板文件
+    {{ data.age }}
+
+    {% if data.age == 18 %}
+        {{ data['name'] }}
+    {% elif data.age < 18 %}
+        you're under age.
+    {% else %}
+         {{ data['name'] }}
+    {% endif %}
+
 </body>
 </html>
