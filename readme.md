@@ -25,3 +25,15 @@ http://localhost:81/test
 http://localhost:81/book/search
 
 http://127.0.0.1:81/book/search?q=红楼梦
+
+
+项目思维导图：
+
+鱼书
+    搜索书籍（依靠外部API）
+        关键字检索
+        isbn检索
+    选择要赠送的书籍
+        向他人赠送书籍
+    选择自己想要的书籍
+        向他人索要书籍
