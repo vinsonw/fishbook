@@ -14,6 +14,11 @@ class  BookViewModel:
         self.summary = book['summary']
         self.pages = book['pages']
 
+    @property
+    def intro(self):
+        intros = filter(lambda x: True if x else False,
+                        [self.author, self.publisher, self.price]) #remarkable code
+        return '/'.join(intros)
 
 class BookCollection:
     def __init__(self):
@@ -25,6 +30,7 @@ class BookCollection:
         self.total = yushu_book.total
         self.keyword = keyword
         self.books = [BookViewModel(book) for book in yushu_book.books]
+
 
 
 # 废弃此类（面向过程的写法）
