@@ -56,8 +56,12 @@ def search():
     return render_template('search_result.html', books=books)
 
 @web.route('/book/<isbn>/detail')
-def book_detail(isbn):
-    pass
+def book_detail(isbn): #isbn参数从url中获得
+    yushu_book = YuShuBook()
+    yushu_book.search_by_isbn(isbn)
+    book = BookViewModel(yushu_book.first)
+    return render_template('book_detail.html', book=book, wishes=[], gifts=[])
+
 
 @web.route('/test')
 def test():

@@ -1,10 +1,11 @@
 # coding: utf-8
 # 2019/6/30 21:05
+from app.models.base import db
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
 from sqlalchemy import Column, Integer, String
-from flask_sqlalchemy import SQLAlchemy
+
 
 # SqlAlchemy -> Flask_SqlAlchemy
 # WTforms -> Flask_Wtforms
@@ -12,7 +13,7 @@ from flask_sqlalchemy import SQLAlchemy
 # Flask
 # werkzeug -> flask route
 
-db = SQLAlchemy()
+
 
 # MVC M Model 只有数据 《=》 数据库设计
 # ORM对象关系映射 Code first
