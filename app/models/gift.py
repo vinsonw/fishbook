@@ -7,6 +7,7 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
+
 class Gift(db.Model):
     id = Column(Integer, primary_key=True)
     launched = Column(Boolean, default=False)
