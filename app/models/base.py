@@ -14,6 +14,6 @@ class Base(db.Model):
     status = Column(SmallInteger, default=1)
 
     def set_attrs(self, attrs_dict):
-        for key, value in attrs_dict.itmes():
+        for key, value in attrs_dict.items():
             if hasattr(self, key) and key != 'id':
                 setattr(self, key, value)

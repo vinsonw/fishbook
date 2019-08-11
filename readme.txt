@@ -46,3 +46,4 @@ http://127.0.0.1:81/book/search?q=红楼梦
         修改密码
 
 详情页面无法访问，仔细看详情页面的url为：http://127.0.0.1:81/book//detail
+http://127.0.0.1:81/register
