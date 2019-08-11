@@ -2,13 +2,13 @@
 # 2019/8/3 3:06
 from sqlalchemy.orm import relationship
 
-from app.models.base import db
+from app.models.base import db, Base
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
 
-class Gift(db.Model):
+class Gift(Base):
     id = Column(Integer, primary_key=True)
     launched = Column(Boolean, default=False)
     user = relationship('User')

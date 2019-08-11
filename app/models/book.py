@@ -1,6 +1,6 @@
 # coding: utf-8
 # 2019/6/30 21:05
-from app.models.base import db
+from app.models.base import db, Base
 
 __author__ = 'Vinson <me@vinsonwei.com>'
 
@@ -18,7 +18,7 @@ from sqlalchemy import Column, Integer, String
 # MVC M Model 只有数据 《=》 数据库设计
 # ORM对象关系映射 Code first
 
-class Book(db.Model): #让自定义类继承db.Model，必需
+class Book(Base): #让自定义类继承db.Model，必需
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String(50), nullable=False)
     author = Column(String(30), default='佚名')

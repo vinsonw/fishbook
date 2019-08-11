@@ -1,11 +1,23 @@
+from flask import render_template, request
+
+from werkzeug.security import generate_password_hash
+from app.forms.auth import RegisterForm
+from app.models.user import User
 from . import web
 
 __author__ = '七月'
 
 
-@web.route('/register', methods=['GET', 'POST'])
+@web.route('/register', method=['GET', 'POST'])
 def register():
-    pass
+    form = RegisterForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User()
+        user.set_attrs(form.data) # form.data包含客户端传过来的所有数据
+        user.password = form.password.data # password属性有setter和getter
+
+    # request.form
+    return render_template('auth/register.html', form={'data':{}})
 
 
 @web.route('/login', methods=['GET', 'POST'])
